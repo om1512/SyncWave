@@ -6,7 +6,7 @@ const directMessageHandler = require("./socketHandlers/directMessageHandler");
 const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
 const newRoomCreateHandler = require("./socketHandlers/newRoomCreateHandler");
 const newRoomJoinHandler = require("./socketHandlers/newRoomJoinHandler");
-
+const roomLeaveHandler = require("./socketHandlers/roomLeaveHandler");
 const registerSocketServer = (server) => {
   const io = require("socket.io")(server, {
     cors: {
@@ -53,7 +53,11 @@ const registerSocketServer = (server) => {
 
     socket.on("join-room", (data) => {
       newRoomJoinHandler(socket, data);
-    }); 
+    });
+
+    socket.on("room-leave", (data) => {
+      roomLeaveHandler(socket, data);
+    });
   });
 
   setInterval(() => {

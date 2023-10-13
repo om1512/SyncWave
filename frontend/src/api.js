@@ -64,7 +64,7 @@ export const acceptFriendInvitation = async (data) => {
     return await apiClient.post("/friend-invitation/accept", data);
   } catch (exception) {
     checkResponseCode(exception);
-    return { 
+    return {
       error: true,
       exception,
     };
