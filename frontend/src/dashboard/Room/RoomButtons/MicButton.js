@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import MicIcon from "@mui/icons-material/Mic";
 import MicOffIcon from "@mui/icons-material/MicOff";
-const MicButton = () => {
+const MicButton = ({ localStream }) => {
   const [micEnabled, setMicEnabled] = useState(true);
 
   const handleMicOperation = () => {
+    localStream.getAudioTracks()[0].enabled = !micEnabled;
     setMicEnabled(!micEnabled);
   };
 
@@ -16,4 +17,4 @@ const MicButton = () => {
   );
 };
 
-export default MicButton; 
+export default MicButton;

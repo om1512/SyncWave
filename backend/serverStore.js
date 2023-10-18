@@ -78,10 +78,15 @@ const getActiveRooms = () => {
 };
 
 const getActiveRoom = (roomId) => {
-  const room = activeRoom.find((r) => r.roomId === roomId);
-  return {
-    ...room,
-  };
+  const newActiveRoom = activeRoom.find((r) => r.roomId === roomId);
+
+  if (newActiveRoom) {
+    return {
+      ...newActiveRoom,
+    };
+  } else {
+    return null;
+  }
 };
 const joinActiveRoom = (roomId, newParticipant) => {
   const room = activeRoom.find((room) => room.roomId === roomId);
@@ -99,16 +104,18 @@ const joinActiveRoom = (roomId, newParticipant) => {
   activeRoom.push(updatedRoom);
 };
 
-const leaveActiveRoom = (roomId, socketId) => {
-  const room = activeRoom.find((room) => room.id != roomId);
+const leaveActiveRoom = (roomId, participantSocketId) => {
+  const room = activeRoom.find((room) => room.roomId === roomId);
+
   if (room) {
     const copyOfActiveRoom = { ...room };
-    copyOfActiveRoom.participants = copyOfActiveRoom.participants.filter(
-      (participants) => participants.socketId != socketId
-    );
 
-    //remove the previous activeRoom instance and add new copy of activeRoom instance with updated participant.
-    activeRoom = activeRoom.filter((room) => room.roomId != roomId);
+    copyOfActiveRoom.participants = copyOfActiveRoom.participants.filter(
+      (participant) => participant.socketId !== participantSocketId
+    );
+    
+    activeRoom = activeRoom.filter((r) => r.roomId !== roomId);
+
     if (copyOfActiveRoom.participants.length > 0) {
       activeRoom.push(copyOfActiveRoom);
     }

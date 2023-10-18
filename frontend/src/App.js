@@ -6,6 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import RegisterPage from "./authPages/registerPage/RegisterPage";
 import AlertNotification from "./shared/components/AlertNotification";
 function App() {
+  console.disableYellowBox = true;
   return (
     <>
       <BrowserRouter>

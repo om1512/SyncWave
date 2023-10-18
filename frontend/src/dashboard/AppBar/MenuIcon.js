@@ -4,20 +4,21 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { logout } from "../../shared/utils/auth";
-
-const options = ["Logout"];
-
-const ITEM_HEIGHT = 48;
-
-export default function LongMenu() {
+import { connect } from "react-redux";
+import { getActions } from "../../store/actions/roomActions";
+function LongMenu({ audioOnly, setAudioOnly }) {
+  const ITEM_HEIGHT = 48;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    logout();
     setAnchorEl(null);
+  };
+
+  const handleAudioOnlyChange = () => {
+    setAudioOnly(!audioOnly);
   };
 
   return (
@@ -39,8 +40,8 @@ export default function LongMenu() {
           "aria-labelledby": "long-button",
         }}
         anchorEl={anchorEl}
-        open={open}
         onClose={handleClose}
+        open={open}
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
@@ -48,16 +49,24 @@ export default function LongMenu() {
           },
         }}
       >
-        {options.map((option) => (
-          <MenuItem
-            key={option}
-            selected={option === "Pyxis"}
-            onClick={handleClose}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleAudioOnlyChange}>
+          {audioOnly ? "Audio Only Enabled" : "Audio Only Disabled"}
+        </MenuItem>
       </Menu>
     </div>
   );
 }
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+const mapStoreStateToProps = ({ room }) => {
+  return {
+    ...room,
+  };
+};
+export default connect(mapStoreStateToProps, mapActionsToProps)(LongMenu);
