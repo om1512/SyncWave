@@ -5,7 +5,7 @@
 <h3>🧑🏽‍💻 About</h3>
 
 <blockquote style="padding:10px" align="left">
-   A SyncWave application is a platform designed to mimic the features and functionalities of SyncWave, a popular communication and community-building app. This application typically includes features such as text and voice chat, user roles and permissions, server creation, message history, and integration with various multimedia content. It serves as an alternative for individuals or organizations looking to create their own private or public communication channels, gaming communities, or social spaces with a similar user experience to SyncWave.
+   A SyncWave application is a platform designed to mimic the features and functionalities of Discord, a popular communication and community-building app. This application typically includes features such as text and voice chat, user roles and permissions, server creation, message history, and integration with various multimedia content. It serves as an alternative for individuals or organizations looking to create their own private or public communication channels, gaming communities, or social spaces with a similar user experience to SyncWave.
 </blockquote>
 </div>
 
