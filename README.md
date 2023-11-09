@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-<h4>🚀 Steps to run projct</h4>
+<h4>🚀 Steps to run project</h4>
 </div>
 <ol>
   <li>
